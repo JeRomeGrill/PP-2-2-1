@@ -12,27 +12,32 @@ import java.util.List;
 @Repository
 public class UserDaoImp implements UserDao {
 
-   @Autowired
-   private SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
-   @Override
-   public void add(User user) {
-      sessionFactory.getCurrentSession().save(user);
-   }
+    @Autowired
+    public UserDaoImp(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
-   @Override
-   @SuppressWarnings("unchecked")
-   public List<User> listUsers() {
-      TypedQuery<User> query=sessionFactory.getCurrentSession().createQuery("from User");
-      return query.getResultList();
-   }
+    @Override
+    public void add(User user) {
+        sessionFactory.getCurrentSession().save(user);
+    }
 
-   @Override
-   public User getUserByCar(String model, int series) {
-      User user = (User) sessionFactory.getCurrentSession().createQuery
-              ("FROM User u where u.car.model = :param1 and u.car.series= :param2").
-              setParameter("param1", model).setParameter("param2",series).getSingleResult();
-      return user;
-   }
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<User> listUsers() {
+        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
+        return query.getResultList();
+    }
+
+    @Override
+    public User getUserByCar(String model, int series) {
+        User user = (User) sessionFactory.getCurrentSession().createQuery
+                        ("FROM User u where u.car.model = :param1 and u.car.series= :param2").
+                setParameter("param1", model).setParameter("param2", series).setMaxResults(1)
+                .getSingleResult();
+        return user;
+    }
 
 }
