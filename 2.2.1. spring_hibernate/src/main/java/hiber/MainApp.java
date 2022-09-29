@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class MainApp {
-   public static void main(String[] args) throws SQLException {
+   public static void main(String[] args) {
       AnnotationConfigApplicationContext context = 
             new AnnotationConfigApplicationContext(AppConfig.class);
 
@@ -22,7 +22,7 @@ public class MainApp {
       carService.add(new Car("Audi", 1234));
       carService.add(new Car("Hyundai", 12345));
       carService.add(new Car("Kia", 123456));
-      carService.add(new Car("Kia", 1234567));
+      carService.add(new Car("Kia", 123456));
 
       List<Car> cars = carService.listCars();
 
@@ -35,7 +35,7 @@ public class MainApp {
       userService.add(new User("User2", "Lastname2", "user2@mail.ru",cars.get(1)));
       userService.add(new User("User3", "Lastname3", "user3@mail.ru",cars.get(2)));
       userService.add(new User("User4", "Lastname4", "user4@mail.ru",cars.get(3)));
-      userService.add(new User("User4", "Lastname4", "user4@mail.ru",cars.get(3)));
+      userService.add(new User("User5", "Lastname5", "user5@mail.ru",cars.get(4)));
 
       List<User> users = userService.listUsers();
 

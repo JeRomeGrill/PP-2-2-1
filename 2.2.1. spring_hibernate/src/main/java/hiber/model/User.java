@@ -22,7 +22,7 @@ public class User {
    private String email;
 
    @OneToOne
-   @JoinColumn (name = "cars_series")
+   @JoinColumn (name = "car_id")
    @Cascade(org.hibernate.annotations.CascadeType.ALL)
    private Car car;
 
@@ -35,9 +35,6 @@ public class User {
       this.car = car;
    }
 
-   public User(Car car) {
-      this.car = car;
-   }
 
    public Long getId() {
       return id;

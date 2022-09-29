@@ -1,18 +1,18 @@
 package hiber.model;
 
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table (name = "cars")
 public class Car  {
 
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column (name = "model")
     private String model;
 
-    @Id
     @Column (name = "series")
     private int series;
 
@@ -42,6 +42,13 @@ public class Car  {
         this.series = series;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @Override
     public String toString() {
